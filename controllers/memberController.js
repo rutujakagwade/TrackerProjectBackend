@@ -75,7 +75,8 @@ export const updateUserProfile = async (req, res) => {
   try {
     const { name, avatar, style, seed } = req.body;
 
-    const member = await Member.findById(req.member.id);
+    // ✅ Fix here
+    const member = await Member.findById(req.actor.user._id);
     if (!member) return res.status(404).json({ message: "User not found" });
 
     if (name) member.name = name;
@@ -96,6 +97,8 @@ export const updateUserProfile = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
+
 export const addBalance = async (req, res) => {
   try {
     const { memberId } = req.params;
@@ -131,17 +134,5 @@ export const getBalance = async (req, res) => {
     res.status(500).json({ message: e.message });
   }
 };
-// export const getMemberProfile = async (req, res) => {
-//   console.log("🚀 Member ID from params:", req.params.memberId);
-//   console.log("🚀 Actor from token:", req.actor.user);
 
-//   try {
-//     const member = await Member.findById(req.params.memberId);
-//     if (!member) return res.status(404).json({ message: "Member not found" });
-//     res.json(member);
-//   } catch (err) {
-//     console.error("❌ Backend error:", err);
-//     res.status(500).json({ message: err.message });
-//   }
-// };
 

@@ -9,6 +9,7 @@ import authRoutes from "./routes/authRoutes.js";
 import balanceRoutes from "./routes/balanceRoutes.js";
 import superadminRoutes from "./routes/superadminRoutes.js";
 import expenseRoutes from "./routes/expenseRoutes.js";
+import journeyRoutes from "./routes/journeyRoutes.js";
 
 const app = express();
 app.use(cors());
@@ -23,6 +24,7 @@ app.use("/api/superadmin", superadminRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/balance", balanceRoutes);
 app.use("/api/expenses", expenseRoutes);
+app.use("/api/journeys", journeyRoutes);
 
 const PORT = process.env.PORT || 5000;
 

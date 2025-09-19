@@ -6,7 +6,7 @@ import { protect } from "../middleware/auth.js";
 const router = Router();
 
 // All admin routes require member token & admin role
-router.post("/members/add", protect(["admin"], "member"), addMember);
+router.post("/members/add", protect(["admin","user"], "member"), addMember);
 router.get("/members", protect(["admin","user"], "member"), listMembers);
 
 router.get("/profile", protect(["admin"], "member"), getAdminProfile);
